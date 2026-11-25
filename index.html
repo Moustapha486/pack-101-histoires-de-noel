@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les 100 Histoires Magiques de Noël | Lumina Store</title>
+  <meta name="description" content="101 histoires magiques de Noël pour enfants de 3 à 12 ans. Un recueil PDF à télécharger après achat.">
+  <style>
+    :root {
+      --bg: #fff7f0;
+      --bg-soft: #fff1e6;
+      --wine: #5b1020;
+      --red: #b71c1c;
+      --red-deep: #7f1111;
+      --gold: #f0b34a;
+      --gold-soft: #fde3b0;
+      --cream: #fffaf5;
+      --text: #2b1b23;
+      --muted: #6e5a63;
+      --green: #1f7a4d;
+      --white: #ffffff;
+      --shadow: 0 18px 50px rgba(43, 27, 35, 0.10);
+      --shadow-soft: 0 8px 24px rgba(43, 27, 35, 0.06);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; height: auto; }
+    a { color: inherit; }
+    .container { width: min(1140px, calc(100% - 40px)); margin: 0 auto; }
+
+    /* Announcement */
+    .announcement {
+      background: linear-gradient(90deg, #6d1222, #b71c1c, #6d1222);
+      color: #fff;
+      text-align: center;
+      padding: 11px 16px;
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+    .announcement strong { color: var(--gold-soft); }
+
+    /* Nav */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,247,240,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(91,16,32,0.06);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 14px 0;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      text-decoration: none; font-weight: 800; font-size: 1.35rem; color: var(--wine);
+    }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 14px;
+      background: linear-gradient(145deg, #ffd27d, #e89b1c);
+      display: grid; place-items: center;
+      color: #5a2a00; font-size: 1.2rem;
+      box-shadow: 0 8px 20px rgba(240,179,74,0.35);
+    }
+    .nav-btn {
+      text-decoration: none;
+      background: linear-gradient(180deg, #cc2222, #8e1515);
+      color: #fff; font-weight: 800; font-size: 0.95rem;
+      padding: 12px 22px; border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(183,28,28,0.28);
+      transition: transform .15s ease, box-shadow .15s ease;
+      white-space: nowrap;
+    }
+    .nav-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(183,28,28,0.34); }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 64px 0 72px;
+      background:
+        linear-gradient(115deg, rgba(43,15,25,0.88) 0%, rgba(91,16,32,0.78) 42%, rgba(43,15,25,0.55) 100%),
+        url('assets/bg-christmas.jpg') center/cover no-repeat;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(240,179,74,0.22), transparent 25%),
+                  radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08), transparent 20%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 44px; align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 16px; border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 0.84rem; font-weight: 700; letter-spacing: 0.3px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.8vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+    .hero h1 .gold { color: var(--gold-soft); }
+    .hero .lead {
+      font-size: 1.13rem;
+      color: rgba(255,255,255,0.92);
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+    .hero .lead strong { color: #fff; }
+    .price-wrap {
+      display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 18px;
+      margin-bottom: 24px;
+    }
+    .price-now {
+      font-size: clamp(2.6rem, 5vw, 3.5rem);
+      font-weight: 900; line-height: 1; color: var(--gold);
+      text-shadow: 0 4px 18px rgba(240,179,74,0.25);
+    }
+    .price-old {
+      font-size: 1.3rem; color: rgba(255,255,255,0.62); text-decoration: line-through; font-weight: 600;
+    }
+    .save-pill {
+      background: rgba(31,122,77,0.22);
+      color: #c8f0da;
+      border: 1px solid rgba(200,240,218,0.25);
+      padding: 8px 14px; border-radius: 999px; font-weight: 800; font-size: 0.9rem;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      text-decoration: none;
+      padding: 19px 32px; border-radius: 16px;
+      font-weight: 900; font-size: 1.08rem;
+      color: #4a2200;
+      background: linear-gradient(180deg, #ffd27a, #e89b1c);
+      box-shadow: 0 16px 36px rgba(232,155,28,0.38);
+      transition: transform .15s ease, box-shadow .15s ease;
+      min-width: 300px;
+      text-align: center;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(232,155,28,0.45); }
+    .btn-sub {
+      margin-top: 13px;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.82);
+    }
+    .trust-row {
+      display: flex; flex-wrap: wrap; gap: 12px 22px;
+      margin-top: 26px;
+    }
+    .trust-item {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.93rem; font-weight: 600; color: rgba(255,255,255,0.95);
+    }
+    .trust-item .ic {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: rgba(255,255,255,0.16); display: grid; place-items: center; font-size: 0.75rem;
+    }
+    .hero-visual {
+      position: relative;
+    }
+    .hero-visual .frame {
+      background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+      padding: 12px; border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+    }
+    .hero-visual img {
+      width: 100%; border-radius: 22px;
+    }
+    .floating {
+      position: absolute; left: 24px; bottom: -16px;
+      background: #fff; color: var(--text);
+      padding: 14px 18px; border-radius: 16px;
+      box-shadow: var(--shadow);
+      font-weight: 800; font-size: 0.95rem;
+    }
+    .floating .stars { color: #f3a61b; letter-spacing: 2px; font-size: 1rem; margin-bottom: 2px; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    .label {
+      text-align: center;
+      font-size: 0.79rem; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--red); margin-bottom: 12px;
+    }
+    .title {
+      text-align: center;
+      font-size: clamp(1.9rem, 4.4vw, 3rem);
+      line-height: 1.15; color: #2d1824; margin-bottom: 16px;
+      text-wrap: balance;
+    }
+    .subtitle {
+      text-align: center; color: var(--muted); font-size: 1.06rem;
+      max-width: 740px; margin: 0 auto 46px;
+    }
+
+    /* Pain / Dream */
+    .dream {
+      background: linear-gradient(135deg, #fff3dc 0%, #ffe4e4 45%, #eaf7ee 100%);
+    }
+    .dream-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .dream-card {
+      border-radius: var(--radius); padding: 30px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255,255,255,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .dream-card:nth-child(1) { background: linear-gradient(180deg, #fff9ef 0%, #fff1d6 100%); }
+    .dream-card:nth-child(2) { background: linear-gradient(180deg, #fff5f5 0%, #ffe3e3 100%); }
+    .dream-card:nth-child(3) { background: linear-gradient(180deg, #f3fff6 0%, #ddf5e5 100%); }
+    .dream-icon {
+      width: 58px; height: 58px; border-radius: 18px;
+      display: grid; place-items: center; font-size: 1.7rem;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+    .dream-card:nth-child(1) .dream-icon { background: linear-gradient(145deg, #ffd97a, #f0b34a); }
+    .dream-card:nth-child(2) .dream-icon { background: linear-gradient(145deg, #ffb3b3, #e57373); }
+    .dream-card:nth-child(3) .dream-icon { background: linear-gradient(145deg, #b7e4c7, #74c69d); }
+    .dream-card h3 { font-size: 1.18rem; margin-bottom: 8px; color: #2d1824; }
+    .dream-card p { color: #5a4850; font-size: 0.98rem; }
+
+    /* Inside */
+    .inside { background: linear-gradient(180deg, #fffaf5 0%, #fff0dd 100%); }
+    .inside-grid {
+      display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 44px; align-items: center;
+    }
+    .inside-media {
+      position: relative;
+    }
+    .inside-media .img-main {
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(43,27,35,0.18);
+      width: 100%;
+      object-fit: cover;
+      min-height: 420px;
+    }
+    .inside-media .img-inset {
+      position: absolute;
+      width: 180px;
+      right: -18px; bottom: -24px;
+      border-radius: 18px;
+      border: 6px solid #fff;
+      box-shadow: var(--shadow);
+    }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+    .feature-list li {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: #fff; padding: 18px 20px; border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+    }
+    .feature-list .f-icon {
+      width: 38px; height: 38px; flex: 0 0 38px; border-radius: 12px;
+      display: grid; place-items: center; font-size: 1rem; font-weight: 700;
+      color: #fff;
+    }
+    .feature-list li:nth-child(1) .f-icon { background: linear-gradient(145deg, #f0b34a, #e08900); }
+    .feature-list li:nth-child(2) .f-icon { background: linear-gradient(145deg, #e74c3c, #c0392b); }
+    .feature-list li:nth-child(3) .f-icon { background: linear-gradient(145deg, #2ecc71, #1f7a4d); }
+    .feature-list li:nth-child(4) .f-icon { background: linear-gradient(145deg, #8e44ad, #6c3483); }
+    .feature-list strong { display: block; margin-bottom: 2px; color: #2d1824; }
+    .feature-list span { color: var(--muted); font-size: 0.96rem; }
+
+    /* Content band */
+    .band {
+      padding: 0 0 80px;
+      background: var(--bg);
+    }
+    .band-card {
+      background: linear-gradient(135deg, #5b1020, #8c1d2f);
+      color: #fff;
+      border-radius: 32px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      box-shadow: 0 24px 60px rgba(91,16,32,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .band-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at top right, rgba(240,179,74,0.25), transparent 30%);
+    }
+    .stat { position: relative; text-align: center; padding: 10px; }
+    .stat .num {
+      font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 900; color: var(--gold-soft); line-height: 1; margin-bottom: 8px;
+    }
+    .stat .txt { font-size: 1rem; color: rgba(255,255,255,0.92); font-weight: 600; }
+
+    /* Value */
+    .value { background: linear-gradient(135deg, #ffe9d6 0%, #ffe0e0 50%, #e8f8ef 100%); }
+    .value-wrap {
+      max-width: 920px; margin: 0 auto;
+      background: #fff; border-radius: 32px; padding: 44px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(240,179,74,0.2);
+    }
+    .value-row {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+      padding: 16px 0; border-bottom: 1px dashed rgba(91,16,32,0.15);
+    }
+    .value-row .v-label { font-weight: 650; color: #35222b; font-size: 1.02rem; }
+    .value-row .v-label small { display: block; font-weight: 500; color: var(--muted); font-size: 0.9rem; margin-top: 2px; }
+    .value-row .v-price { font-weight: 800; color: #7a6770; white-space: nowrap; font-size: 1rem; }
+    .value-total {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+      padding: 22px 0 0;
+    }
+    .value-total .t-label { font-size: 1.15rem; font-weight: 800; color: #2d1824; }
+    .value-total .t-price { font-size: 1.5rem; font-weight: 800; color: #8a7680; text-decoration: line-through; }
+    .offer-box {
+      margin-top: 30px;
+      background: linear-gradient(160deg, #fff8ef, #fff);
+      border: 2px solid rgba(183,28,28,0.12);
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+    }
+    .offer-box .today { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.6px; font-weight: 800; color: var(--red); margin-bottom: 8px; }
+    .offer-box .big-price {
+      font-size: clamp(2.8rem, 6vw, 4rem); font-weight: 900; color: var(--red); line-height: 1; margin-bottom: 8px;
+    }
+    .offer-box .instead { color: var(--muted); font-size: 1rem; margin-bottom: 22px; }
+    .offer-box .btn-primary { width: 100%; max-width: 460px; }
+    .offer-box .btn-sub { color: var(--muted); }
+
+    /* Reviews */
+    .reviews { background: linear-gradient(180deg, #fff8ef 0%, #fff0f0 100%); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .review {
+      background: #ffffff;
+      border-radius: 20px; padding: 28px;
+      border: 1px solid rgba(240,179,74,0.18);
+      box-shadow: 0 8px 24px rgba(91,16,32,0.05);
+    }
+    .review .stars { color: #f3a61b; letter-spacing: 2px; font-size: 1.1rem; margin-bottom: 14px; }
+    .review p { color: #44313a; margin-bottom: 20px; font-size: 0.98rem; }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 46px; height: 46px; border-radius: 50%; flex: 0 0 46px;
+      background: linear-gradient(145deg, #ffd27a, #f0b34a);
+      color: #5a2a00; display: grid; place-items: center; font-weight: 800;
+    }
+    .reviewer .name { font-weight: 750; color: #2d1824; font-size: 0.95rem; }
+    .reviewer .meta { color: var(--muted); font-size: 0.85rem; }
+
+    /* FAQ */
+    .faq { background: linear-gradient(180deg, #fef6ee 0%, #fff0e0 100%); }
+    .faq-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    details {
+      background: #fff; border-radius: 16px; padding: 0 24px;
+      border: 1px solid rgba(91,16,32,0.05); box-shadow: var(--shadow-soft);
+    }
+    summary {
+      padding: 20px 0; font-weight: 750; color: #2d1824; cursor: pointer;
+      list-style: none; position: relative; padding-right: 30px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+      color: var(--red); font-size: 1.5rem; font-weight: 400; line-height: 1;
+    }
+    details[open] summary::after { content: "−"; }
+    details .answer { padding: 0 0 22px; color: var(--muted); }
+
+    /* Final CTA */
+    .final {
+      position: relative;
+      padding: 90px 0;
+      color: #fff;
+      background:
+        linear-gradient(115deg, rgba(35,10,18,0.90), rgba(91,16,32,0.82)),
+        url('assets/tree-magic.jpg') center/cover no-repeat;
+      text-align: center;
+      overflow: hidden;
+    }
+    .final::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(240,179,74,0.18), transparent 35%);
+      pointer-events: none;
+    }
+    .final .container { position: relative; z-index: 1; }
+    .final h2 {
+      font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.15; margin-bottom: 18px;
+      text-wrap: balance;
+    }
+    .final p { max-width: 720px; margin: 0 auto 28px; font-size: 1.1rem; color: rgba(255,255,255,0.9); }
+    .final .price-wrap { justify-content: center; margin-bottom: 26px; }
+    .final .btn-primary { min-width: 320px; }
+    .final .btn-sub { color: rgba(255,255,255,0.8); }
+    .final-note {
+      margin-top: 28px;
+      display: inline-flex; gap: 10px; align-items: center;
+      padding: 14px 20px; border-radius: 14px;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.92);
+      font-size: 0.94rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 0;
+      text-align: center;
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.93rem;
+      border-top: 1px solid rgba(91,16,32,0.06);
+    }
+    footer .foot-brand { font-weight: 800; color: var(--wine); font-size: 1.1rem; margin-bottom: 4px; }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid, .inside-grid { grid-template-columns: 1fr; }
+      .hero { padding: 52px 0 64px; }
+      .hero-visual { max-width: 640px; margin: 0 auto; }
+      .floating { position: static; display: inline-block; margin-top: 14px; }
+      .dream-grid, .reviews-grid { grid-template-columns: 1fr; }
+      .band-card { grid-template-columns: 1fr; padding: 34px 24px; }
+      .inside-media .img-inset { width: 140px; right: 12px; bottom: -16px; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 60px 0; }
+      .value-wrap { padding: 28px 20px; }
+      .value-row, .value-total { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .btn-primary, .final .btn-primary { width: 100%; min-width: 0; }
+      .nav-btn { padding: 10px 14px; font-size: 0.86rem; }
+      .trust-row { flex-direction: column; gap: 10px; }
+    }
+  </style>
+<script>
+  /* ============================================================
+     LIEN DE PAIEMENT UNIQUE : modifiez UNIQUEMENT cette ligne.
+     Tous les boutons de la page (data-checkout) se mettent à jour.
+     ============================================================ */
+  var CHECKOUT_URL = "https://luminaa.mychariow.shop/prd_i6rzjoc9/checkout";
+</script>
+</head>
+<body>
+
+  <div class="announcement">
+    🎄 Offre spéciale Noël : <strong>101 histoires magiques</strong> pour faire briller les yeux de vos enfants
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Lumina Store">
+        <span class="brand-mark">✦</span>
+        <span>Lumina Store</span>
+      </a>
+            <a href="#" data-checkout class="nav-btn">Je veux l'ebook</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">✨ Ebook PDF • 3 à 12 ans • Accès immédiat</div>
+        <h1>Le recueil de Noël qui transforme vos soirées en <span class="gold">moments magiques</span></h1>
+        <p class="lead">
+          Offrez à vos enfants <strong>101 histoires de Noël</strong> captivantes, tendres et inoubliables. Un seul ebook pour créer du rire, de l'émerveillement et de vrais souvenirs en famille, soir après soir.
+        </p>
+
+        <div class="price-wrap">
+          <div class="price-now">999 FCFA</div>
+          <div class="price-old">2 500 FCFA</div>
+          <div class="save-pill">Vous économisez 1 501 FCFA</div>
+        </div>
+
+                <a href="#" data-checkout class="btn-primary" id="acheter">Obtenir les 101 histoires maintenant</a>
+        <div class="btn-sub">Téléchargement immédiat après achat • Fichier PDF</div>
+
+        <div class="trust-row">
+          <div class="trust-item"><span class="ic">✓</span> 101 histoires originales</div>
+          <div class="trust-item"><span class="ic">✓</span> 3 tranches d'âge</div>
+          <div class="trust-item"><span class="ic">✓</span> Lecture sur téléphone, tablette ou PC</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="frame">
+          <img src="assets/visuel-pub.png" alt="Les 100 Histoires Magiques de Noël - Lumina Store">
+        </div>
+        <div class="floating">
+          <div class="stars">★★★★★</div>
+          Les familles adorent
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dream">
+    <div class="container">
+      <div class="label">Pourquoi ce recueil</div>
+      <h2 class="title">Des histoires qui font plus que divertir</h2>
+      <p class="subtitle">Chaque page est pensée pour captiver l'attention de vos enfants, nourrir leur imagination et créer un moment de connexion précieux entre vous et eux.</p>
+
+      <div class="dream-grid">
+        <div class="dream-card">
+          <div class="dream-icon">🌟</div>
+          <h3>Ils s'émerveillent vraiment</h3>
+          <p>Des personnages attachants, des aventures magiques et des fins qui laissent des étoiles dans les yeux.</p>
+        </div>
+        <div class="dream-card">
+          <div class="dream-icon">📖</div>
+          <h3>Ils prennent goût à la lecture</h3>
+          <p>Des histoires adaptées à leur âge, avec le bon rythme, le bon vocabulaire et l'envie d'en écouter une autre.</p>
+        </div>
+        <div class="dream-card">
+          <div class="dream-icon">❤️</div>
+          <h3>Vous créez des souvenirs</h3>
+          <p>Le rituel du soir devient un moment attendu : une histoire, un câlin, un souvenir qui reste.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inside">
+    <div class="container inside-grid">
+      <div class="inside-media">
+        <img src="assets/family-reading.jpg" alt="Famille lisant ensemble à Noël" class="img-main">
+        <img src="assets/cover.png" alt="Couverture du recueil" class="img-inset">
+      </div>
+
+      <div>
+        <div class="label" style="text-align:left;">Ce que vous recevez</div>
+        <h2 class="title" style="text-align:left;">Un recueil complet, prêt à faire vivre la magie de Noël</h2>
+        <p class="subtitle" style="text-align:left; margin:0 0 10px; max-width:none;">
+          Pas besoin de chercher une nouvelle histoire chaque soir. Vous avez tout, en un seul ebook, organisé pour toute la famille.
+        </p>
+
+        <ul class="feature-list">
+          <li>
+            <div class="f-icon">101</div>
+            <div>
+              <strong>101 histoires originales</strong>
+              <span>De quoi raconter une histoire différente pendant des semaines, sans répétition ni lassitude.</span>
+            </div>
+          </li>
+          <li>
+            <div class="f-icon">3</div>
+            <div>
+              <strong>3 tranches d'âge adaptées</strong>
+              <span>3-5 ans, 6-8 ans, 9-12 ans : chaque enfant découvre des histoires à son niveau.</span>
+            </div>
+          </li>
+          <li>
+            <div class="f-icon">✦</div>
+            <div>
+              <strong>Illustré et magnifiquement présenté</strong>
+              <span>Chaque histoire est accompagnée d'une image pour rendre la lecture encore plus vivante.</span>
+            </div>
+          </li>
+          <li>
+            <div class="f-icon">PDF</div>
+            <div>
+              <strong>Format PDF simple et pratique</strong>
+              <span>Lisible sur téléphone, tablette ou ordinateur. Vous pouvez aussi l'imprimer si vous préférez.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="container">
+      <div class="band-card">
+        <div class="stat">
+          <div class="num">101</div>
+          <div class="txt">Histoires magiques à découvrir</div>
+        </div>
+        <div class="stat">
+          <div class="num">3</div>
+          <div class="txt">Tranches d'âge pour toute la famille</div>
+        </div>
+        <div class="stat">
+          <div class="num">1</div>
+          <div class="txt">Ebook PDF à garder et relire</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="value">
+    <div class="container">
+      <div class="label">Valeur exceptionnelle</div>
+      <h2 class="title">Tout ce que vous recevez aujourd'hui</h2>
+      <p class="subtitle">Un recueil premium pensé pour apporter de la joie, de la lecture et de la magie à vos enfants, à un prix accessible.</p>
+
+      <div class="value-wrap">
+        <div class="value-row">
+          <div class="v-label">101 histoires originales de Noël <small>Un contenu riche pour des soirées variées et captivantes</small></div>
+          <div class="v-price">4 000 FCFA</div>
+        </div>
+        <div class="value-row">
+          <div class="v-label">Contenu structuré pour 3 tranches d'âge <small>Parfait pour les enfants de 3 à 12 ans</small></div>
+          <div class="v-price">2 000 FCFA</div>
+        </div>
+        <div class="value-row">
+          <div class="v-label">Illustrations + mise en page soignée <small>Une expérience de lecture agréable et immersive</small></div>
+          <div class="v-price">2 000 FCFA</div>
+        </div>
+        <div class="value-row">
+          <div class="v-label">Format PDF accessible partout <small>Téléphone, tablette, ordinateur ou impression</small></div>
+          <div class="v-price">1 500 FCFA</div>
+        </div>
+
+        <div class="value-total">
+          <div class="t-label">Valeur totale</div>
+          <div class="t-price">9 500 FCFA</div>
+        </div>
+
+        <div class="offer-box">
+          <div class="today">Votre prix aujourd'hui</div>
+          <div class="big-price">999 FCFA</div>
+          <div class="instead">Au lieu de <s>2 500 FCFA</s> — accès immédiat au recueil complet</div>
+                    <a href="#" data-checkout class="btn-primary">Oui, j'offre la magie de Noël à mes enfants</a>
+          <div class="btn-sub">Téléchargement du fichier PDF après achat</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <div class="container">
+      <div class="label">Avis clients</div>
+      <h2 class="title">Les familles en parlent mieux que nous</h2>
+      <p class="subtitle">Des parents ravis, des enfants captivés, et des soirées qui deviennent de vrais moments de bonheur.</p>
+
+      <div class="reviews-grid">
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>« Mes enfants attendent l'histoire du soir avec impatience. Les récits sont doux, captivants et vraiment adaptés. C'est devenu notre rituel préféré. »</p>
+          <div class="reviewer">
+            <div class="avatar">AM</div>
+            <div>
+              <div class="name">Aïcha M.</div>
+              <div class="meta">Cliente Lumina Store</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>« Pour ce prix, le contenu est impressionnant. Le PDF est bien présenté, les images sont belles et les histoires plaisent vraiment. Je recommande sans hésiter. »</p>
+          <div class="reviewer">
+            <div class="avatar">KD</div>
+            <div>
+              <div class="name">Koffi D.</div>
+              <div class="meta">Client Lumina Store</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>« J'ai offert ce recueil et ce fut un vrai succès. Les histoires sont variées, positives et pleines de magie. Très belle découverte. »</p>
+          <div class="reviewer">
+            <div class="avatar">SB</div>
+            <div>
+              <div class="name">Sarah B.</div>
+              <div class="meta">Cliente Lumina Store</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>« Ce que j'ai aimé, c'est la variété. Il y en a pour tous les âges, et chaque histoire garde l'attention. On ne s'en lasse pas. »</p>
+          <div class="reviewer">
+            <div class="avatar">MN</div>
+            <div>
+              <div class="name">Mireille N.</div>
+              <div class="meta">Cliente Lumina Store</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>« La lecture du soir est devenue un moment magique à la maison. Les histoires sont bien écrites et les illustrations rendent l'ensemble très vivant. »</p>
+          <div class="reviewer">
+            <div class="avatar">YA</div>
+            <div>
+              <div class="name">Yannick A.</div>
+              <div class="meta">Client Lumina Store</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>« Un achat que je ne regrette pas du tout. Le recueil est riche, beau et facile à lire sur téléphone. Mes enfants adorent. »</p>
+          <div class="reviewer">
+            <div class="avatar">FE</div>
+            <div>
+              <div class="name">Fatou E.</div>
+              <div class="meta">Cliente Lumina Store</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="container">
+      <div class="label">FAQ</div>
+      <h2 class="title">Questions fréquentes</h2>
+      <p class="subtitle">Tout est clair avant votre achat.</p>
+
+      <div class="faq-list">
+        <details>
+          <summary>Qu'est-ce que je reçois exactement ?</summary>
+          <div class="answer">Vous recevez un <strong>ebook PDF</strong> contenant 101 histoires magiques de Noël, organisées en 3 tranches d'âge (3-5 ans, 6-8 ans, 9-12 ans), avec une illustration pour chaque histoire.</div>
+        </details>
+
+        <details>
+          <summary>Comment je reçois mon ebook après l'achat ?</summary>
+          <div class="answer">Après votre achat, vous <strong>téléchargez le fichier vous-même</strong>. Si vous n'y arrivez pas, vous pouvez nous écrire et l'équipe Lumina Store vous aidera.</div>
+        </details>
+
+        <details>
+          <summary>Sur quel appareil puis-je lire le recueil ?</summary>
+          <div class="answer">Le recueil est au format PDF. Vous pouvez le lire sur <strong>téléphone, tablette, ordinateur</strong>, ou l'imprimer si vous le souhaitez.</div>
+        </details>
+
+        <details>
+          <summary>Ce recueil convient-il à quel âge ?</summary>
+          <div class="answer">Il est conçu pour les enfants de <strong>3 à 12 ans</strong>, avec des histoires adaptées à chaque tranche d'âge pour que toute la famille en profite.</div>
+        </details>
+
+        <details>
+          <summary>Et si j'ai un problème après l'achat ?</summary>
+          <div class="answer">Si vous rencontrez une difficulté pour télécharger votre fichier, écrivez-nous simplement. L'équipe <strong>Lumina Store</strong> est là pour vous aider.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="container">
+      <div class="label" style="color: var(--gold-soft);">Dernière étape</div>
+      <h2>Faites de ce Noël un souvenir que vos enfants n'oublieront jamais</h2>
+      <p>Un seul ebook. 101 histoires. Des dizaines de soirées magiques en famille. Offrez-leur des histoires qui les font rêver, rire et s'émerveiller.</p>
+
+      <div class="price-wrap">
+        <div class="price-now">999 FCFA</div>
+        <div class="price-old">2 500 FCFA</div>
+        <div class="save-pill">Offre spéciale</div>
+      </div>
+
+            <a href="#" data-checkout class="btn-primary">Je télécharge mon ebook maintenant</a>
+      <div class="btn-sub">Téléchargement immédiat après achat • Lumina Store</div>
+
+      <div class="final-note">
+        💌 Après achat, vous téléchargez votre fichier vous-même. Besoin d'aide ? L'équipe Lumina Store est disponible pour vous accompagner.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-brand">Lumina Store</div>
+      <p>© 2026 Lumina Store. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+<script>
+  document.querySelectorAll("a[data-checkout]").forEach(function (a) {
+    a.href = CHECKOUT_URL;
+  });
+</script>
+</body>
+</html>
